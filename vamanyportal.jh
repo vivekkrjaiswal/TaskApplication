@@ -1,0 +1,74 @@
+entity CompanyMaster {
+	companyCode String,
+    companyName String,
+    flag String,
+    createdBy String,
+    createdDate Instant
+}
+
+entity FactoryMaster {
+	factoryCode String,
+    factoryName String,
+    flag String,
+    createdBy String,
+    createdDate Instant
+}
+
+entity NewsMaster {
+	newsName String,
+    flag String,
+    createdBy String,
+    createdDate Instant
+}
+
+entity NewsDetails {
+	newsTitle String,
+    newsStartTime Instant,
+    newsEndTime Instant,
+    flag String,
+    createdBy String,
+    createdDate Instant,
+    approveBy String,
+    approveDate Instant
+    mailFlag String,
+    notificationFlag String    
+}
+
+entity NewsDetailsBody {
+	newsBody String,
+    createdBy String,
+    createdDate Instant
+}
+
+entity NewsDetailsAttach {
+	attachFile String,
+    attachDisplayFile String,
+    createdBy String,
+    createdDate Instant
+}
+
+relationship OneToOne {
+	CompanyMaster{factoryMaster} to FactoryMaster
+}
+
+relationship OneToMany {
+	NewsMaster{newsDetails} to NewsDetails
+}
+
+relationship OneToMany {
+	CompanyMaster{newsDetails} to NewsDetails
+}
+
+relationship OneToMany {
+	FactoryMaster{newsDetails} to NewsDetails
+}
+
+relationship OneToMany {
+	NewsDetails{newsDetailsBody} to NewsDetailsBody
+}
+
+relationship OneToMany {
+	NewsDetails{newsDetailsAttach} to NewsDetailsAttach
+}
+
+
